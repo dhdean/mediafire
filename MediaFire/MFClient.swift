@@ -53,8 +53,24 @@ class SessionToken {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// MFClientConfig
+////////////////////////////////////////////////////////////////////////////////
+
+public class MFClientConfig {
+    public var appID:String?
+    public var apiKey:String?
+    public var maxQueuedJobs:Int = 1
+    public var apiVersion:Int = 5
+    public var persistSession:Bool = false
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // MFClient
 ////////////////////////////////////////////////////////////////////////////////
+
+public protocol MFClientDelegate {
+    func clientDidRequestLoginCredentials()
+}
 
 
 public typealias CallbackWithError = (NSError?) -> Void
@@ -71,13 +87,17 @@ public class MFClient {
     var jobs:SynchronizedQueue?
     var waitingForToken:SynchronizedBool = SynchronizedBool(value: false)
     var apiVersion:Int = 5
+    var persistSession:Bool = false
+    
     
     //--------------------------------------------------------------------------
-    init(appID: String, apiKey: String, maxQueuedJobs: Int, apiVersion:Int = 5) {
-        self.appID = appID
-        self.apiKey = apiKey
+    init(config:MFClientConfig) {
+        self.appID = config.appID
+        self.apiKey = config.apiKey
+        self.apiVersion = config.apiVersion
         self.sessionToken = SessionToken()
-        self.jobs = SynchronizedQueue(maxSize: maxQueuedJobs)
+        self.persistSession = config.persistSession
+        self.jobs = SynchronizedQueue(maxSize: config.maxQueuedJobs)
     }
     
     //--------------------------------------------------------------------------
