@@ -70,9 +70,10 @@ public class MFClient {
     var session:NSURLSession?
     var jobs:SynchronizedQueue?
     var waitingForToken:SynchronizedBool = SynchronizedBool(value: false)
+    var apiVersion:Int = 5
     
     //--------------------------------------------------------------------------
-    init(appID: String, apiKey: String, maxQueuedJobs: Int) {
+    init(appID: String, apiKey: String, maxQueuedJobs: Int, apiVersion:Int = 5) {
         self.appID = appID
         self.apiKey = apiKey
         self.sessionToken = SessionToken()
@@ -133,7 +134,7 @@ public class MFClient {
     
     //--------------------------------------------------------------------------
     public func post(location: String, query: NSData, handler: CallbackWithDictionary) -> NSURLSessionTask {
-        let req = NSMutableURLRequest .createMFAPIPost(location, bodyData: query)
+        let req = NSMutableURLRequest.createMFAPIPost(self.apiVersion, location: location, bodyData: query)
         let task = self.urlSession()?.dataTaskWithRequest(req, completionHandler: { (data, response, error) in
             if (error != nil) {
                 handler(nil, NSError(domain: (error?.domain)!, code: (error?.code)!, userInfo: ["response": data ?? ""]))

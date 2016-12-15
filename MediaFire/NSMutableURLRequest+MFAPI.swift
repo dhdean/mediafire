@@ -9,8 +9,8 @@ import Foundation
 
 extension NSMutableURLRequest {
     
-    public static func createMFAPIPost(location: String, bodyData: NSData) -> NSMutableURLRequest {
-        let url = "https://www.mediafire.com/api/1.5/"+location;
+    public static func createMFAPIPost(version:Int, location: String, bodyData: NSData) -> NSMutableURLRequest {
+        let url = "https://www.mediafire.com/api/1."+String(version)+"/"+location;
         let req = NSMutableURLRequest()
         req.HTTPMethod = "POST";
         req.HTTPBody = bodyData;
