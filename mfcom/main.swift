@@ -7,7 +7,7 @@
 
 import Foundation
 
-let client:MFClient = MFClient(appID: "<APP ID HERE>", apiKey: "<API KEY HERE>")
+let client:MFClient = MFClient(appID: "<APP ID HERE>", apiKey: "<API KEY HERE>", maxQueuedJobs: 10)
 let sema = dispatch_semaphore_create(0)
 client.getSessionToken("<EMAIL HERE>", password: "<PASSWORD HERE>", handler: { (err) in
     if (err != nil) {

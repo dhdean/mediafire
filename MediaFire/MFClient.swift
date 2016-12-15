@@ -56,8 +56,11 @@ class SessionToken {
 // MFClient
 ////////////////////////////////////////////////////////////////////////////////
 
+
 public typealias CallbackWithError = (NSError?) -> Void
 public typealias CallbackWithDictionary = (NSDictionary?, NSError?) -> Void
+
+let errDomain:String = "net.dhdean.mediafire"
 
 public class MFClient {
     
@@ -65,13 +68,15 @@ public class MFClient {
     var appID:String?
     var apiKey:String?
     var session:NSURLSession?
-    let errDomain:String = "net.dhdean.mediafire"
+    var jobs:SynchronizedQueue?
+    var waitingForToken:SynchronizedBool = SynchronizedBool(value: false)
     
     //--------------------------------------------------------------------------
-    init(appID: String, apiKey: String) {
+    init(appID: String, apiKey: String, maxQueuedJobs: Int) {
         self.appID = appID
         self.apiKey = apiKey
         self.sessionToken = SessionToken()
+        self.jobs = SynchronizedQueue(maxSize: maxQueuedJobs)
     }
     
     //--------------------------------------------------------------------------
@@ -84,6 +89,10 @@ public class MFClient {
     
     //--------------------------------------------------------------------------
     public func getSessionToken(email: String, password: String, handler:CallbackWithError) {
+        if !self.waitingForToken.makeTrue() {
+            handler(NSError(domain: errDomain, code: 45, userInfo: nil))
+            return
+        }
         let mutableCreds = NSMutableDictionary()
         mutableCreds["signature"] = (email+password+self.appID!+self.apiKey!).sha1()
         mutableCreds["email"] = email
@@ -93,18 +102,21 @@ public class MFClient {
             let token = response!["response"]!["session_token"]
             let tokenString = token as? String
             if (tokenString == nil || tokenString!.isEmpty) {
-                handler(NSError(domain: self.errDomain, code: 5, userInfo: nil))
+                self.waitingForToken.makeFalse()
+                handler(NSError(domain: errDomain, code: 5, userInfo: nil))
             }
             self.sessionToken.setValue(tokenString!)
+            self.waitingForToken.makeFalse()
             handler(nil)
         })
     }
 
+   
     //--------------------------------------------------------------------------
     public func sessionPost(api: String, action: String, query: NSMutableDictionary, handler: CallbackWithDictionary) -> NSURLSessionTask? {
         let tokenString:String? = self.sessionToken.value()
         if (tokenString == nil || tokenString!.isEmpty) {
-            handler(nil,NSError(domain: self.errDomain, code: 7, userInfo: nil))
+            handler(nil,NSError(domain: errDomain, code: 7, userInfo: nil))
             return nil
         }
         query["session_token"] = self.sessionToken.value()
@@ -130,17 +142,12 @@ public class MFClient {
             
             var jsonDict:NSDictionary?
             do {
-                let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                jsonDict = jsonObject as? NSDictionary
+                try jsonDict = data!.jsonDataAsDictionary()
             } catch let jsonErr as NSError  {
                 handler(nil, NSError(domain:jsonErr.domain, code:jsonErr.code, userInfo:["response": data ?? ""]))
                 return;
             }
             
-            if (jsonDict == nil) {
-                handler(nil, NSError(domain:self.errDomain, code:5, userInfo:["response": data ?? ""]))
-                return
-            }
             handler(jsonDict, nil)
         })
         task?.resume()

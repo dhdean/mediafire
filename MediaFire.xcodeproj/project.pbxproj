@@ -12,6 +12,10 @@
 		65A12B811E0046AD0090A995 /* NSMutableURLRequest+MFAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65337BC91DFFA20C00881132 /* NSMutableURLRequest+MFAPI.swift */; };
 		65A12B821E0046AD0090A995 /* NSDictionary+Stringify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A12B6F1E003A100090A995 /* NSDictionary+Stringify.swift */; };
 		65A12B831E0046AD0090A995 /* NSString+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A12B721E0045950090A995 /* NSString+Hash.swift */; };
+		65F4CD211E023EB2004E98BC /* SynchronizedBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F4CD201E023EB2004E98BC /* SynchronizedBool.swift */; };
+		65F4CD231E024152004E98BC /* SynchronizedQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F4CD221E024152004E98BC /* SynchronizedQueue.swift */; };
+		65F4CD251E024240004E98BC /* NSData+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F4CD241E024240004E98BC /* NSData+JSON.swift */; };
+		65F4CD271E024491004E98BC /* MFAPIReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F4CD261E024491004E98BC /* MFAPIReq.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +38,10 @@
 		65A12B791E0046960090A995 /* mfcom */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mfcom; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A12B7B1E0046960090A995 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		65A12B861E0047480090A995 /* mfcom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mfcom-Bridging-Header.h"; sourceTree = "<group>"; };
+		65F4CD201E023EB2004E98BC /* SynchronizedBool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedBool.swift; sourceTree = "<group>"; };
+		65F4CD221E024152004E98BC /* SynchronizedQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedQueue.swift; sourceTree = "<group>"; };
+		65F4CD241E024240004E98BC /* NSData+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+JSON.swift"; sourceTree = "<group>"; };
+		65F4CD261E024491004E98BC /* MFAPIReq.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFAPIReq.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,10 @@
 				65337BC91DFFA20C00881132 /* NSMutableURLRequest+MFAPI.swift */,
 				65A12B6F1E003A100090A995 /* NSDictionary+Stringify.swift */,
 				65A12B721E0045950090A995 /* NSString+Hash.swift */,
+				65F4CD201E023EB2004E98BC /* SynchronizedBool.swift */,
+				65F4CD221E024152004E98BC /* SynchronizedQueue.swift */,
+				65F4CD241E024240004E98BC /* NSData+JSON.swift */,
+				65F4CD261E024491004E98BC /* MFAPIReq.swift */,
 			);
 			path = MediaFire;
 			sourceTree = "<group>";
@@ -145,8 +157,12 @@
 				65A12B801E0046AD0090A995 /* MFClient.swift in Sources */,
 				65A12B811E0046AD0090A995 /* NSMutableURLRequest+MFAPI.swift in Sources */,
 				65A12B821E0046AD0090A995 /* NSDictionary+Stringify.swift in Sources */,
+				65F4CD231E024152004E98BC /* SynchronizedQueue.swift in Sources */,
+				65F4CD251E024240004E98BC /* NSData+JSON.swift in Sources */,
 				65A12B831E0046AD0090A995 /* NSString+Hash.swift in Sources */,
 				65A12B7C1E0046960090A995 /* main.swift in Sources */,
+				65F4CD271E024491004E98BC /* MFAPIReq.swift in Sources */,
+				65F4CD211E023EB2004E98BC /* SynchronizedBool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +303,7 @@
 				65A12B7F1E0046960090A995 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
