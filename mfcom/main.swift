@@ -17,16 +17,19 @@ config.persistSession = false
 
 
 let client:MFClient = MFClient(config: config)
-let sema = dispatch_semaphore_create(0)
+let sema = DispatchSemaphore(value: 0)
 client.getSessionToken("<EMAIL HERE>", password: "<PASSWORD HERE>", handler: { (err) in
     if (err != nil) {
         print("%@", err)
-        dispatch_semaphore_signal(sema)
+        sema.signal()
         return
     }
-    client.sessionPost("folder", action:"get_info", query:[:]) { (response, error) in
+    var req = JAPIReq()
+    req.api = "folder"
+    req.action = "get_info"
+    client.sessionPost(req) { (response, error) in
         print("%@",response)
-        dispatch_semaphore_signal(sema)
+        sema.signal()
     }
 })
-dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER)
+sema.wait(timeout: DispatchTime.distantFuture)
