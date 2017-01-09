@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		65A12B7C1E0046960090A995 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A12B7B1E0046960090A995 /* main.swift */; };
 		65A12B801E0046AD0090A995 /* MFClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65886DB91DFDF8670082EE12 /* MFClient.swift */; };
-		65A12B811E0046AD0090A995 /* URLRequest+MFAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65337BC91DFFA20C00881132 /* URLRequest+MFAPI.swift */; };
 		65A12B821E0046AD0090A995 /* Dictionary+Stringify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A12B6F1E003A100090A995 /* Dictionary+Stringify.swift */; };
 		65A12B831E0046AD0090A995 /* NSString+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A12B721E0045950090A995 /* NSString+Hash.swift */; };
 		65ED665C1E0732690047B074 /* HTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ED665B1E0732690047B074 /* HTClient.swift */; };
@@ -32,7 +31,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		65337BC91DFFA20C00881132 /* URLRequest+MFAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+MFAPI.swift"; sourceTree = "<group>"; };
 		65886DB91DFDF8670082EE12 /* MFClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFClient.swift; sourceTree = "<group>"; };
 		65A12B6F1E003A100090A995 /* Dictionary+Stringify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Stringify.swift"; path = "../../japiclient/Dictionary+Stringify.swift"; sourceTree = "<group>"; };
 		65A12B721E0045950090A995 /* NSString+Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Hash.swift"; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				65886DB91DFDF8670082EE12 /* MFClient.swift */,
-				65337BC91DFFA20C00881132 /* URLRequest+MFAPI.swift */,
 				65A12B721E0045950090A995 /* NSString+Hash.swift */,
 				65A12B6F1E003A100090A995 /* Dictionary+Stringify.swift */,
 				65F4CD201E023EB2004E98BC /* SynchronizedBool.swift */,
@@ -159,7 +156,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65A12B801E0046AD0090A995 /* MFClient.swift in Sources */,
-				65A12B811E0046AD0090A995 /* URLRequest+MFAPI.swift in Sources */,
 				65A12B821E0046AD0090A995 /* Dictionary+Stringify.swift in Sources */,
 				65F4CD231E024152004E98BC /* SynchronizedQueue.swift in Sources */,
 				65ED665C1E0732690047B074 /* HTClient.swift in Sources */,

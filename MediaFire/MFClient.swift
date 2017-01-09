@@ -9,6 +9,7 @@ import Foundation
 
 typealias TokenCallback = (NSString?) -> Void
 
+
 /**
  ///////////////////////////////////////////////////////////////////////////////
  MFSessionToken
@@ -75,6 +76,7 @@ class MFSessionToken {
 
 }
 
+
 /**
  ///////////////////////////////////////////////////////////////////////////////
  MFReqHandle
@@ -88,6 +90,7 @@ open class MFReqHandle {
         self.apiReq = apiReq
     }
 }
+
 
 /**
  ///////////////////////////////////////////////////////////////////////////////
@@ -120,6 +123,7 @@ public extension NSError {
     }
 }
 
+
 /**
  ///////////////////////////////////////////////////////////////////////////////
  MFClientConfig
@@ -132,6 +136,7 @@ open class MFClientConfig {
     open var apiVersion:Int = 5
     open var persistSession:Bool = false
 }
+
 
 /**
  ///////////////////////////////////////////////////////////////////////////////
@@ -264,7 +269,6 @@ open class MFClient: JAPIClient {
     open func post(_ api: String, action: String, query: Dictionary<String, String>, handler: @escaping JAPICallback) -> MFReqHandle {
         var mutableQuery = query
         mutableQuery["response_format"] = "json"
-        print(mutableQuery)
         let apiReq = JAPIReq()
         apiReq.api = api
         apiReq.action = action
@@ -284,7 +288,6 @@ open class MFClient: JAPIClient {
     override open func resolveUrl(_ apiReq: JAPIReq) -> String? {
         let location = apiReq.api!+"/"+apiReq.action!+".php"
         let url = "https://"+apiDomain+"/api/1."+String(self.config.apiVersion)+"/"+location
-        print(url)
         return url
     }
     
