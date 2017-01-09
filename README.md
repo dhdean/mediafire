@@ -7,6 +7,9 @@ See https://github.com/dhdean/mediafire/blob/master/mfcom/main.swift for a usage
 
 This project requires Swift files from the following repos:
 
+
 HTClient: https://github.com/dhdean/htclient
+
 JAPIClient: https://github.com/dhdean/japiclient
+
 Synchronized: https://github.com/dhdean/synchronized
