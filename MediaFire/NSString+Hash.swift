@@ -1,8 +1,6 @@
 //
 //  NSString+Hash.swift
-//  MediaFire
 //
-//  Created by Daniel Dean on 12/13/16.
 //
 
 import Foundation

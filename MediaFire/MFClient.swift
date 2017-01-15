@@ -1,6 +1,5 @@
 //
 //  MFClient.swift
-//  MediaFire
 //
 //  Created by Daniel Dean on 12/11/16.
 //
@@ -253,6 +252,27 @@ open class MFClient: JAPIClient {
             }
             handler(response, error)
         }
+    }
+    
+    /**
+     Queues a request for sending.
+     
+     - param api: The api group.
+     - param action: The api action.
+     - param query: The query parameters for the request.
+     - param handler: The completion handler fired when the request completes.
+     
+     - returns: A handle containing the original request object and a data task
+     */
+    @discardableResult
+    open func sessionPost(_ api: String, action: String, query: Dictionary<String, String>?, handler: @escaping JAPICallback) -> MFReqHandle? {
+        let req = JAPIReq()
+        req.api = api
+        req.action = action
+        if (query != nil) {
+            req.query = query!
+        }
+        return self.sessionPost(req, handler: handler)
     }
     
     /**

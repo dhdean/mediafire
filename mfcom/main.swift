@@ -19,8 +19,8 @@ config.persistSession = false
 let client:MFClient = MFClient(config: config)
 let sema = DispatchSemaphore(value: 0)
 client.getSessionToken("<EMAIL HERE>", password: "<PASSWORD HERE>", handler: { (err) in
-    if (err != nil) {
-        print("%@", err)
+    if let localErr = err {
+        print("%@", localErr)
         sema.signal()
         return
     }
@@ -28,7 +28,7 @@ client.getSessionToken("<EMAIL HERE>", password: "<PASSWORD HERE>", handler: { (
     req.api = "folder"
     req.action = "get_info"
     client.sessionPost(req) { (response, error) in
-        print("%@",response)
+        print("%@",response ?? "")
         sema.signal()
     }
 })
